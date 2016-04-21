@@ -10,5 +10,8 @@
             "email": "kingmaxyang@gmail.com"
         }
     ],
+    "autoload": {
+        "classmap": ["URL.php"]
+    },
     "require": {}
 }
