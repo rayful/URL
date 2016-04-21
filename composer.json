@@ -2,7 +2,7 @@
     "name": "rayful/url",
     "description": "A URL operation Class, including set query, get query, parse query, get domain and so on.",
     "keywords": ["URL", "get query", "set query", "encode full URL", "get URL domain", "auto get current URL"],
-    "version":  "0.1.0",
+    "version":  "0.1.1",
     "license": "MIT",
     "authors": [
         {
