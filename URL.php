@@ -9,7 +9,7 @@
  * 
  * 静态调用
  * 改变当前URL的某个参数:
- * return URL::rebuild(['page'=>2]);
+ * return URL::append(['page'=>2]);
  * 
  * 具体请见README.MD
  * 
@@ -79,7 +79,7 @@ class URL
     }
 
 
-    public static function rebuild($query)
+    public static function append($query)
     {
         $URL = new URL();
         $URL->setQuery($query);

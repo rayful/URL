@@ -1,6 +1,11 @@
 # URL
 一个对URL的通用操作类。
 
+### 安装（Composer）
+```bash
+composer require rayful/url
+```
+
 基本用法:
 ```php
 $URL = new URL("http://abc.com/?page=1&param=a");
@@ -36,7 +41,7 @@ $newUrl =  $URL->build();
 
 快捷方式:
 ```php
-echo URL::rebuild(['page'=>2]);
+echo URL::append(['page'=>2]);
 ```
 ---
 
