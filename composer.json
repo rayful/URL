@@ -1,0 +1,12 @@
+{
+    "name": "rayful/url",
+    "description": "A URL operation Class, including set query, get query, parse query, get domain and so on.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kingmax Yang",
+            "email": "kingmaxyang@gmail.com"
+        }
+    ],
+    "require": {}
+}
