@@ -70,6 +70,7 @@ class URL
         } else {
             $this->url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER ['REQUEST_URI'];
         }
+        $this->parse();
     }
 
     function __toString()
@@ -85,7 +86,7 @@ class URL
         return $URL->build();
     }
 
-    public static function domain($url)
+    public static function domain($url = null)
     {
         $URL = new URL($url);
         return $URL->getDomain();
@@ -113,25 +114,16 @@ class URL
 
     public function getHost()
     {
-        if (is_null($this->parse)) {
-            $this->parse();
-        }
         return $this->host;
     }
 
     public function getPath()
     {
-        if (is_null($this->path)) {
-            $this->parse();
-        }
         return $this->path;
     }
 
     public function getQuery()
     {
-        if (is_null($this->query)) {
-            $this->parse();
-        }
         return $this->query;
     }
 
@@ -142,9 +134,6 @@ class URL
 
     public function getDomain()
     {
-        if (is_null($this->parse)) {
-            $this->parse();
-        }
         $domain = isset($this->parse['host']) ? $this->parse['host'] : '';
         if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs)) {
             return $regs['domain'];
@@ -191,15 +180,12 @@ class URL
 
     /**
      * 将一个URL里面的特殊字符编码变成程序可以正常抓取的URL
-     * @param string $method
+     * @param string $method 可选值:urlencode/urlrawencode
      * @return string
      */
     public function encode($method = "urlencode")
     {
-        $parts = parse_url($this->url);
-        $parts ['path'] = implode("/", array_map($method, explode("/", $parts ['path'])));
-        $this->url = $parts['scheme'] . "://" . $parts['host'] . $parts ['path'];
-        if ($parts ['query']) $this->url .= "?" . $parts ['query'];
-        return $this->url;
+        $this->path = implode("/", array_map($method, explode("/", $this->path)));
+        return $this;
     }
 }
