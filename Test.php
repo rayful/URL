@@ -50,6 +50,11 @@ class Test extends \PHPUnit_Framework_TestCase
         $queryString = URL::queryString($url);  //query=1&query=2
         $query = URL::query($url);  //['query'=>1,'query2'=>2]
         $dir = URL::dir($url);  //http://url.com/doc
+
+        echo $domain;
+        echo $queryString;
+        print_r($query);
+        echo $dir;
     }
 
 }
