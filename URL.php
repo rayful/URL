@@ -1,18 +1,18 @@
 <?php
 /**
  * 一个URL的操作类
- * 
+ *
  * 基本用法(改变指定URL的某个参数):
  * $URL = new URL("http://abc.com/?page=1");
  * $URL->setQuery(["page"=>1]);
  * return $URL->build();
- * 
+ *
  * 静态调用
  * 改变当前URL的某个参数:
  * return URL::append(['page'=>2]);
- * 
+ *
  * 具体请见README.MD
- * 
+ *
  * Created by PhpStorm.
  * User: kingmax
  * Date: 16/4/21
@@ -158,7 +158,7 @@ class URL
     public function setQuery($query)
     {
         $old_query = $this->getQuery();
-        $new_query = array_merge($old_query, $query);
+        $new_query = array_merge((array) $old_query, (array) $query);
         $this->query = $new_query;
         return $this;
     }
