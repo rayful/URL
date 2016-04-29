@@ -151,9 +151,8 @@ class URL
         $this->parse = parse_url($this->url);
         $this->host = $this->parse['scheme'] . "://" . $this->parse['host'];
         $this->path = $this->parse['path'];
-        if(isset($this->parse['fragment']))
-            $this->fragment = $this->parse['fragment'];
-        parse_str($this->parse ['query'], $this->query);
+        $this->fragment = isset($this->parse['fragment']) ? $this->parse['fragment'] : '';
+        isset($this->parse['query']) AND parse_str($this->parse['query'], $this->query);
     }
 
     public function setQuery($query)
