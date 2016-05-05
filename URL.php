@@ -150,6 +150,7 @@ class URL
     {
         $this->parse = parse_url($this->url);
         $this->host = $this->parse['scheme'] . "://" . $this->parse['host'];
+        !empty($this->parse['port']) AND $this->host .= ':' . $this->parse['port'];
         $this->path = $this->parse['path'];
         $this->fragment = isset($this->parse['fragment']) ? $this->parse['fragment'] : '';
         isset($this->parse['query']) AND parse_str($this->parse['query'], $this->query);
