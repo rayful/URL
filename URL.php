@@ -68,7 +68,8 @@ class URL
         if ($url) {
             $this->url = $url;
         } else {
-            $this->url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER ['REQUEST_URI'];
+            $scheme = !empty($_SERVER['HTTPS']) ? 'https' : 'http';
+            $this->url = "{$scheme}://" . $_SERVER['HTTP_HOST'] . $_SERVER ['REQUEST_URI'];
         }
         $this->parse();
     }
