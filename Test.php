@@ -8,9 +8,16 @@
 
 namespace rayful\Tool;
 
+new Test();
 
-class Test extends \PHPUnit_Framework_TestCase
+class Test
 {
+    public function __construct()
+    {
+        $this->setUp();
+        $this->test5();
+    }
+
     public function setUp()
     {
         require_once "URL.php";
@@ -55,6 +62,14 @@ class Test extends \PHPUnit_Framework_TestCase
         echo $queryString;
         print_r($query);
         echo $dir;
+    }
+
+    public function test5()
+    {
+        $this->setUp();
+        $url = "http://url.com:8080/doc/index.php?query=1&query2=2#abc=3";
+        $append = (new URL($url))->setQuery(['query3'=>3])->build();
+        echo $append;
     }
 
 }

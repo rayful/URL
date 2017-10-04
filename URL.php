@@ -68,7 +68,7 @@ class URL
         if ($url) {
             $this->url = $url;
         } else {
-            $this->url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER ['REQUEST_URI'];
+            $this->url = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . $_SERVER ['REQUEST_URI'];
         }
         $this->parse();
     }
@@ -159,7 +159,7 @@ class URL
     public function setQuery($query)
     {
         $old_query = $this->getQuery();
-        $new_query = array_merge((array) $old_query, (array) $query);
+        $new_query = array_merge((array)$old_query, (array)$query);
         $this->query = $new_query;
         return $this;
     }
