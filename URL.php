@@ -68,7 +68,7 @@ class URL
         if ($url) {
             $this->url = $url;
         } else {
-            $scheme = !empty($_SERVER['HTTPS']) ? 'https' : 'http';
+            $scheme = $this->isSsl() ? 'https' : 'http';
             $this->url = "{$scheme}://" . $_SERVER['HTTP_HOST'] . $_SERVER ['REQUEST_URI'];
         }
         $this->parse();
@@ -77,6 +77,20 @@ class URL
     function __toString()
     {
         return $this->build();
+    }
+    
+    public function isSsl()
+    {
+        if ($_SERVER['HTTPS'] && ('1' == $_SERVER['HTTPS'] || 'on' == strtolower($_SERVER['HTTPS']))) {
+            return true;
+        } elseif ('https' == $_SERVER['REQUEST_SCHEME']) {
+            return true;
+        } elseif ('https' == $_SERVER['HTTP_X_FORWARDED_PROTO']) {
+            return true;
+        } elseif ('443' == $_SERVER['SERVER_PORT']) {
+            return true;
+        }
+        return false;
     }
 
 
