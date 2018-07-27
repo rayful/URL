@@ -81,13 +81,13 @@ class URL
     
     public function isSsl()
     {
-        if ($_SERVER['HTTPS'] && ('1' == $_SERVER['HTTPS'] || 'on' == strtolower($_SERVER['HTTPS']))) {
+        if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] && ('1' == $_SERVER['HTTPS'] || 'on' == strtolower($_SERVER['HTTPS']))) {
             return true;
-        } elseif ('https' == $_SERVER['REQUEST_SCHEME']) {
+        } elseif (isset($_SERVER['REQUEST_SCHEME']) && 'https' == $_SERVER['REQUEST_SCHEME']) {
             return true;
-        } elseif ('https' == $_SERVER['HTTP_X_FORWARDED_PROTO']) {
+        } elseif (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && 'https' == $_SERVER['HTTP_X_FORWARDED_PROTO']) {
             return true;
-        } elseif ('443' == $_SERVER['SERVER_PORT']) {
+        } elseif (isset($_SERVER['SERVER_PORT']) && '443' == $_SERVER['SERVER_PORT']) {
             return true;
         }
         return false;
